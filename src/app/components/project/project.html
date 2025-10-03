@@ -1,0 +1,11 @@
+<div class="projects-container">
+  @for (p of projects; track p.id) {
+    <app-project-item
+      [title]="p.title"
+      [description]="p.description"
+      [route]="p.route">
+    </app-project-item>
+  } @empty {
+    <p>There are currently no projects to display.</p>
+  }
+</div>

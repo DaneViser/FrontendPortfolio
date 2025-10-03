@@ -1,0 +1,36 @@
+<mat-card class="register-card">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+    <h2>Register</h2>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username" required autocomplete="username" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" required autocomplete="new-password" />
+
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Confirm Password</mat-label>
+      <input matInput type="password" formControlName="confirmPassword" required autocomplete="new-password" />
+
+      @if (f['confirmPassword'].errors?.['mismatch']) {
+      <mat-error>
+        Passwords do not match.
+      </mat-error>
+    }
+     @if (f['confirmPassword'].errors?.['required']) {
+      <mat-error>
+        Please confirm your password.
+      </mat-error>
+    }
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid" class="full-width">
+      Register
+    </button>
+  </form>
+</mat-card>

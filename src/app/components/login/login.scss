@@ -1,0 +1,22 @@
+.login-card {
+  max-width: 350px;
+  margin: 40px auto;
+  width: 100%;
+  padding: 24px 16px;
+  box-sizing: border-box;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; // space between fields
+}
+
+.full-width {
+  width: 100%;
+}
+.register-link {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 0.95em;
+}
