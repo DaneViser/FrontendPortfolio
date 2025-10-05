@@ -4,6 +4,8 @@ import { Register } from './components/register/register';
 import { Home } from './components/home/home';
 import { About } from './components/about/about';
 import { Project } from './components/project/project';
+import { Pathfinder } from './components/pathfinder/pathfinder';
+
 export const routes: Routes = [
   {
     path: 'login',
@@ -24,6 +26,10 @@ export const routes: Routes = [
   {
     path: 'project',
     component: Project
+  },
+  {
+    path: 'project/pathfinder',
+    component: Pathfinder
   },
   
 ];

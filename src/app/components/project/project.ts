@@ -11,7 +11,7 @@ import { ProjectItem } from './project-item/project-item';
 })
 export class Project {
   projects = [
-    {id:1, title: 'Pathfinding Algorithm 🗺️', description: 'A project where you choose the starting and end points and let the magic happen', route: '/projects/portfolio' },
+    {id:1, title: 'Pathfinding Algorithm 🗺️', description: 'A project where you choose the starting and end points and let the magic happen', route: '/project/pathfinder' },
     {id:2, title: 'Test', description: 'Test', route: '/projects/salon' }
   ];
 }

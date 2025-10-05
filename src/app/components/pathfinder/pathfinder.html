@@ -1,0 +1,14 @@
+<div class="grid">
+  @for (row of grid; track row; let rowIndex = $index) {
+    <div>
+      @for (tile of row; track tile; let colIndex = $index) {
+        <app-tile
+          [row]="tile.row"
+          [col]="tile.col"
+          [type]="tile.type"
+          (tileClicked)="handleTileClick($event.row, $event.col)">
+        </app-tile>
+      }
+    </div>
+  }
+</div>
