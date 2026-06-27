@@ -1,37 +1,41 @@
-<!-- Header -->
 <header>
   <nav>
-    <!-- Site Title/Logo -->
     <a routerLink="/" class="site-title">Danijel Stokić Portfolio App</a>
 
-    <!-- Navigation Links -->
-    <div class="nav-links">
-      <a routerLink="/home" routerLinkActive="active">Home</a>
-      <a routerLink="/project" routerLinkActive="active">Projects</a>
-      <a routerLink="/about" routerLinkActive="active">About</a>
-    </div>
+    <button class="hamburger" [class.active]="isMenuOpen" (click)="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
-    <!-- If user is NOT logged in, show login link -->
-    @if (!authService.isLoggedIn) {
-      <div class="login-link">
-        <a routerLink="/login" routerLinkActive="active">Login</a>
+    <div class="nav-menu" [class.open]="isMenuOpen">
+      
+      <div class="nav-links">
+        <a routerLink="/home" routerLinkActive="active" (click)="closeMenu()">Home</a>
+        <a routerLink="/project" routerLinkActive="active" (click)="closeMenu()">Projects</a>
+        <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">About</a>
       </div>
-    }
-    @else {
-      <div class="user-info">
-        <span>Welcome, {{ authService.username }} !</span>
-        <button (click)="authService.logout()">Logout</button>
-      </div>
-    }
+
+      @if (!authService.isLoggedIn) {
+        <div class="login-link">
+          <a routerLink="/login" routerLinkActive="active" (click)="closeMenu()">Login</a>
+        </div>
+      }
+      @else {
+        <div class="user-info">
+          <span>Welcome, {{ authService.username }} !</span>
+          <button (click)="authService.logout(); closeMenu()">Logout</button>
+        </div>
+      }
+      
+    </div>
   </nav>
 </header>
 
-<!-- Main Content Area -->
 <main>
   <router-outlet></router-outlet>
 </main>
 
-<!-- Footer -->
 <footer>
   <p>&copy; 2025 MyApp. All Rights Reserved.</p>
   <div class="footer-links">

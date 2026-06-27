@@ -12,5 +12,17 @@ import { AuthService } from './services/Auth/auth.service';
 export class App {
   protected readonly title = signal('website');
 
+  isMenuOpen: boolean = false;
+
+  // Flips the menu open/closed when clicking the hamburger
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  // Closes the menu automatically when a user clicks a link
+  closeMenu() {
+    this.isMenuOpen = false;
+  }
+
    constructor(public authService: AuthService) {}
 }
