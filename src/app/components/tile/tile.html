@@ -1,5 +1,6 @@
 <div 
   class="tile" 
   [ngClass]="type"
-  (click)="onClick()">
+  (click)="onClick()"
+  (mouseenter)="tileMouseEnter.emit({ row, col })">
 </div>

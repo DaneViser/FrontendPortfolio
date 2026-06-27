@@ -17,11 +17,41 @@
     background-color: red;
   }
 
+  &.visited {
+    animation: visitedAnim 0.7s both;
+    background-color: yellow; // fallback
+  }
+
+  &.path {
+    animation: pathAnim 0.7s both;
+    background-color: lightblue;
+  }
+
   &.wall {
     background-color: black;
   }
 
   &:hover {
     opacity: 0.7;
+  }
+
+  @keyframes visitedAnim {
+    from {
+      background-color: lightgreen;
+    }
+
+    to {
+      background-color: yellow;
+    }
+  }
+
+  @keyframes pathAnim {
+  from {
+    background-color: salmon;
+  }
+
+  to {
+    background-color: lightblue;
+    }
   }
 }

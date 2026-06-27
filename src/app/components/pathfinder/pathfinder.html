@@ -1,14 +1,27 @@
-<div class="grid">
-  @for (row of grid; track row; let rowIndex = $index) {
-    <div>
-      @for (tile of row; track tile; let colIndex = $index) {
-        <app-tile
-          [row]="tile.row"
-          [col]="tile.col"
-          [type]="tile.type"
-          (tileClicked)="handleTileClick($event.row, $event.col)">
-        </app-tile>
-      }
-    </div>
-  }
+<div class="pathfinder-layout">
+  <div class="grid-area"
+       (mousedown)="onMouseDown()"
+       (mouseup)="onMouseUp()"
+       (mouseleave)="onMouseUp()">
+    @for (row of grid; track row; let rowIndex = $index) {
+      <div>
+        @for (tile of row; track tile; let colIndex = $index) {
+          <app-tile
+            [row]="tile.row"
+            [col]="tile.col"
+            [type]="tile.type"
+            (tileClicked)="handleTileClick($event.row, $event.col)"
+            (tileMouseEnter)="onTileMouseEnter(tile.row, tile.col)">
+          </app-tile>
+        }
+      </div>
+    }
+  </div>
+  <div class="controls-area">
+    <button (click)="bfs()">Start BFS</button>
+    <button (click)="resetGrid()">Reset Grid</button>
+    <button (click)="wallMode = true">Draw Walls</button>
+    <!-- <button (click)="wallMode = false">Erase Walls</button> -->
+    <!-- Add more buttons here as needed -->
+  </div>
 </div>
