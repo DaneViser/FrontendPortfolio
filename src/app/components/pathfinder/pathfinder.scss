@@ -1,13 +1,37 @@
 .pathfinder-layout {
   display: grid;
-  grid-template-columns: 1fr auto;
+  
+  // Desktop: Side-by-side layout
+  grid-template-columns: max-content auto; 
   gap: 32px;
   align-items: flex-start;
+  justify-content: center; 
+  margin-top: 2rem; 
+
+  // Mobile View: Stack them vertically
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center; // Center everything
+    gap: 24px; // Slightly smaller gap for phones
+    padding: 0 1rem; // Ensure it doesn't touch the screen edges
+  }
 }
 
 .grid-area {
-  /* Ensures grid stays left and doesn't stretch */
-  display: inline-block;
+  display: grid; 
+  /* your grid-template-columns logic stays here */
+
+  width: max-content; 
+  border: 1px solid #ccc; 
+
+  // Mobile View: Swipeable Grid
+  @media (max-width: 768px) {
+    max-width: 100%; // Prevent it from blowing out the viewport
+    overflow-x: auto; // If the grid is huge, let the user swipe horizontally
+    // Adds a subtle shadow to imply it can be scrolled
+    box-shadow: inset -10px 0 10px -10px rgba(0,0,0,0.1); 
+  }
 }
 
 .grid-area > div {
@@ -23,10 +47,19 @@
   background: #f7f7f7;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+
+  // Mobile View: Wider touch targets
+  @media (max-width: 768px) {
+    width: 100%;          // Take up the full screen width...
+    max-width: 400px;     // ...but stop growing if they tilt to landscape
+    
+    // Optional: If you want the controls ABOVE the grid on phones, uncomment the next line:
+    // order: -1; 
+  }
 }
 
 .controls-area button {
-  padding: 8px 16px;
+  padding: 10px 16px; // Bumped top/bottom padding slightly for thumbs
   font-size: 1rem;
   cursor: pointer;
   border: none;
@@ -37,4 +70,47 @@
 
 .controls-area button:hover {
   background: #d0d0d0;
+}
+
+/* --- Grid Size Controls --- */
+.size-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+  padding-top: 16px;
+  border-top: 1px solid #e0e0e0; 
+}
+
+.input-group {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+}
+
+.input-group label {
+  font-size: 0.95rem;
+  color: #444;
+  font-weight: 500;
+}
+
+.input-group input {
+  width: 60px;
+  padding: 8px; // Slightly larger touch area for mobile typing
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-group input:focus {
+  border-color: #888;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.input-group input[type=number]::-webkit-inner-spin-button, 
+.input-group input[type=number]::-webkit-outer-spin-button {  
+   opacity: 1;
 }

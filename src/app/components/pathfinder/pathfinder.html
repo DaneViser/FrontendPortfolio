@@ -17,11 +17,21 @@
       </div>
     }
   </div>
-  <div class="controls-area">
-    <button (click)="bfs()">Start BFS</button>
-    <button (click)="resetGrid()">Reset Grid</button>
-    <button (click)="wallMode = true">Draw Walls</button>
-    <!-- <button (click)="wallMode = false">Erase Walls</button> -->
-    <!-- Add more buttons here as needed -->
+<div class="controls-area">
+  <button (click)="bfs()">Start BFS</button>
+  <button (click)="resetGrid()">Reset Grid</button>
+
+  <div class="size-controls">
+    <div class="input-group">
+      <label for="rowCount">Rows:</label>
+      <input id="rowCount" type="number" [(ngModel)]="rows" (ngModelChange)="onGridSizeChange()" min="5" max="30">
+    </div>
+    
+    <div class="input-group">
+      <label for="colCount">Cols:</label>
+      <input id="colCount" type="number" [(ngModel)]="cols" (ngModelChange)="onGridSizeChange()" min="5" max="30">
+    </div>
+  </div>
+
   </div>
 </div>

@@ -2,6 +2,11 @@
   display: flex;
   justify-content: center;
   padding: 2rem;
+
+  // 📱 Mobile View: Reduce outer padding so the card gets more screen width
+  @media (max-width: 768px) {
+    padding: 1rem; 
+  }
 }
 
 .about-card {
@@ -10,6 +15,26 @@
   opacity: 0;
   transform: translateY(10px);
   animation: fadeInUp 0.4s ease-out forwards;
+
+  // Mobile View: Target the elements inside the card
+  @media (max-width: 768px) {
+    // If you have internal padding set on the card itself, you might want to shrink it here:
+    // padding: 1.5rem; 
+
+    h2 {
+      font-size: 1.5rem; // Slightly scale down the main heading
+    }
+
+    // Pull the bullet points slightly to the left so text doesn't wrap awkwardly
+    ul {
+      padding-left: 1.2rem; 
+    }
+
+    li {
+      font-size: 0.95rem; // Slightly smaller text for better reading flow
+      margin-bottom: 0.5rem;
+    }
+  }
 }
 
 @keyframes fadeInUp {
@@ -22,4 +47,23 @@
 .about-avatar {
   background-size: cover;
   background-position: center;
+
+  // Mobile View: If you end up adding an avatar image later, scale it down here
+  @media (max-width: 768px) {
+    width: 80px; 
+    height: 80px;
+  }
+}
+
+/* --- Bottom Links (View My Projects / Get In Touch) --- */
+// Assuming these are wrapped in a div, flex-wrap ensures they don't break the layout
+.about-links { 
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap; // If the phone is extremely narrow, the links will stack nicely
+    gap: 1rem;
+  }
 }

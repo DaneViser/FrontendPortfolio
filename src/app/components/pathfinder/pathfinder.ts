@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TileComponent } from '../tile/tile';
+import { FormsModule } from '@angular/forms';
 
 interface Tile {
   row: number;
@@ -9,14 +10,14 @@ interface Tile {
 
 @Component({
   selector: 'app-pathfinder',
-  imports: [TileComponent],
+  imports: [TileComponent, FormsModule],
   templateUrl: './pathfinder.html',
   styleUrls: ['./pathfinder.scss']
 })
 export class Pathfinder implements OnInit {
   grid: Tile[][] = [];
-  rows = 15;
-  cols = 25;
+  rows = 7;
+  cols = 7;
 
   start: { row: number, col: number } | undefined;
   end: { row: number, col: number } | undefined;
@@ -41,6 +42,14 @@ export class Pathfinder implements OnInit {
       this.grid.push(row);
     }
   }
+
+onGridSizeChange() {
+  // Add a quick safety check so users can't break your app with negative numbers or 0
+  if (this.rows < 2) this.rows = 2;
+  if (this.cols < 2) this.cols = 2;
+
+  this.generateGrid(); 
+}
 
   handleTileClick(row: number, col: number) {
     if (this.isRunning) return;
@@ -102,7 +111,7 @@ export class Pathfinder implements OnInit {
       ) {
         this.grid[row][col].type = 'visited';
         this.grid = [...this.grid];
-        await this.delay(3);
+        await this.delay(10);
       }
 
       if (row === this.end.row && col === this.end.col) {
