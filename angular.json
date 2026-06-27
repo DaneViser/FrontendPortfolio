@@ -26,9 +26,9 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public",
-                "staticwebapp.config.json"
-              }
+                "input": "public"
+              },
+              "staticwebapp.config.json"
             ],
             "styles": [
               "src/styles.scss"
